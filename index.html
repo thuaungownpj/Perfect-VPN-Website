@@ -37,9 +37,9 @@
             </div>
 
             <nav id="navMenu">
-    <a href="index.html#features">Features</a>
-    <a href="https://play.google.com/store/apps/details?id=com.perfectvpn.yla" target="_blank" class="nav-btn">Download</a>
-</nav>
+                <a href="index.html#features">Features</a>
+                <a href="https://play.google.com/store/apps/details?id=com.perfectvpn.yla" target="_blank" class="nav-btn">Download</a>
+            </nav>
         </div>
     </header>
 
@@ -73,8 +73,11 @@
                     
                     <div class="app-top-bar">
                         <div class="icon-btn"><i class="fa-solid fa-bars"></i></div>
-                        <div class="timer-pill" id="appTimer"><i class="fa-solid fa-stopwatch" style="display:none;"></i> 00:00:00</div>
-                        <div class="icon-btn"><i class="fa-regular fa-user"></i></div>
+                        <!-- 🔴 Profile ဖယ်ရှားပြီး Timer ကို အမိုက်စား ပြင်ဆင်ထားသည် -->
+                        <div class="timer-pill" id="appTimer">
+                            <div class="timer-icon"><i class="fa-solid fa-stopwatch"></i></div>
+                            <span id="timeText">00:00:00</span>
+                        </div>
                     </div>
                     
                     <div class="app-title">PERFECT VPN</div>
@@ -193,6 +196,7 @@
         const powerGlow = document.querySelector('.power-glow');
         const powerUI = document.querySelector('.power-btn-ui');
         const timer = document.getElementById('appTimer');
+        const timeText = document.getElementById('timeText');
         
         let isConnected = false;
         let timerInterval;
@@ -218,17 +222,20 @@
                     powerGlow.style.background = '#00e676';
                     powerGlow.style.animation = 'pulseGlow 2s infinite alternate';
                     
+                    // 🔴 Timer CSS Class အသစ်ထည့်ခြင်း
+                    timer.classList.add('active');
+                    
                     document.getElementById('dlSpeed').textContent = '1.2 MB/s';
                     document.getElementById('ulSpeed').textContent = '450 KB/s';
                     
                     let sec = 1;
-                    timer.innerHTML = '<i class="fa-solid fa-stopwatch"></i> 00:00:01';
+                    timeText.innerText = '00:00:01';
                     timerInterval = setInterval(() => {
                         sec++;
                         let hrs = Math.floor(sec / 3600);
                         let mins = Math.floor((sec % 3600) / 60);
                         let secs = sec % 60;
-                        timer.innerHTML = `<i class="fa-solid fa-stopwatch"></i> ${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                        timeText.innerText = `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
                     }, 1000);
                     
                 }, 1500);
@@ -242,7 +249,11 @@
                 powerUI.style.color = '#00d2ff';
                 powerUI.style.boxShadow = 'none';
                 powerGlow.style.background = '#00d2ff';
-                timer.innerHTML = '00:00:00';
+                
+                // 🔴 Timer CSS ပြန်လည်ရုပ်သိမ်းခြင်း
+                timer.classList.remove('active');
+                timeText.innerText = '00:00:00';
+                
                 document.getElementById('dlSpeed').textContent = '0.0 B/s';
                 document.getElementById('ulSpeed').textContent = '0.0 B/s';
             }

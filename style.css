@@ -196,26 +196,47 @@ nav a:hover { color: #00d2ff; }
     border: 1px solid rgba(255,255,255,0.05);
     font-size: 16px;
 }
+
+/* 🔴 Timer ကို App ၏ UI အသစ်အတိုင်း Cyberpunk Glassmorphism စတိုင် ပြောင်းထားပါသည် */
 .timer-pill {
-    background: #141824;
-    padding: 8px 20px;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 6px 12px 6px 6px;
     border-radius: 30px;
     font-size: 13px;
-    font-weight: 600;
-    color: #94a3b8;
-    border: 1px solid rgba(255,255,255,0.05);
-    letter-spacing: 1px;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.54);
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 1.5px;
+    font-variant-numeric: tabular-nums; /* ဂဏန်းများ ဘယ်ညာမခုန်ရန် */
+    transition: all 0.3s ease;
 }
 
-.app-title {
-    font-size: 26px;
-    font-weight: 800;
-    letter-spacing: 4px;
-    background: linear-gradient(90deg, #00f2fe 0%, #4facfe 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
-    margin-bottom: 30px;
+.timer-icon {
+    background: rgba(255, 255, 255, 0.05);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+/* 🔴 ချိတ်ဆက်ပြီးချိန် Timer အရောင်တောက်သည့် CSS (JS မှ အလိုအလျောက် ခေါ်ပေးမည်) */
+.timer-pill.active {
+    border-color: rgba(0, 230, 118, 0.5);
+    box-shadow: 0 0 20px rgba(0, 230, 118, 0.25);
+    color: #ffffff;
+}
+.timer-pill.active .timer-icon {
+    background: rgba(0, 230, 118, 0.2);
+    color: #00e676;
 }
 
 /* Power Button */
